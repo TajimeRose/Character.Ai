@@ -1,0 +1,46 @@
+
+<!doctype html>
+<html lang="th">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>AI Character MVP</title>
+  <style>
+    body { font-family: sans-serif; margin: 20px; }
+    #chat { border:1px solid #ddd; padding:10px; height:380px; overflow:auto; }
+    .msg.user { text-align:right; margin:6px 0; }
+    .msg.ai { text-align:left; margin:6px 0; }
+    .bubble { display:inline-block; padding:8px 10px; border-radius:10px; max-width:80%; }
+    .user .bubble { background:#e0f2fe; }
+    .ai .bubble { background:#f1f5f9; }
+  </style>
+</head>
+<body>
+  <h1>AI Character MVP</h1>
+
+  <div style="display:flex; gap:8px; align-items:center; flex-wrap: wrap;">
+    <label>Auth Token (ชั่วคราว):</label>
+    <input id="token" placeholder="ใส่ uid/โทเค่นสั้นๆ" style="width:280px;">
+    <button onclick="saveToken()">Save</button>
+
+    <label>Character:</label>
+    <select id="character">
+      <option value="neko_friend">เนโกะเพื่อนซี้</option>
+      <option value="study_helper">ติวเตอร์ใจดี</option>
+    </select>
+
+    <button onclick="loadList()">โหลดบทสนทนาของฉัน</button>
+  </div>
+
+  <div id="list" style="margin:10px 0;"></div>
+
+  <div id="chat"></div>
+
+  <div style="margin-top:10px; display:flex; gap:6px;">
+    <input id="msg" placeholder="พิมพ์ข้อความ..." style="flex:1;">
+    <button onclick="send()">ส่ง</button>
+  </div>
+
+  <script src="{{ url_for('static', filename='app.js') }}"></script>
+</body>
+</html>
