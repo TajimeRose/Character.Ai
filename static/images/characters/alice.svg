@@ -1,0 +1,17 @@
+<svg width="240" height="240" viewBox="0 0 240 240" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="gradAlice" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#5b21b6" />
+      <stop offset="100%" stop-color="#a78bfa" />
+    </linearGradient>
+    <radialGradient id="haloAlice" cx="48%" cy="35%" r="60%">
+      <stop offset="0%" stop-color="#c4b5fd" stop-opacity="0.7" />
+      <stop offset="100%" stop-color="#0b0b0f" stop-opacity="0" />
+    </radialGradient>
+  </defs>
+  <rect width="240" height="240" rx="48" fill="#0b0b0f" />
+  <rect x="16" y="18" width="208" height="206" rx="40" fill="url(#gradAlice)" />
+  <circle cx="120" cy="100" r="86" fill="url(#haloAlice)" />
+  <path d="M120 66 C144 90 162 118 162 142 C162 162 148 176 120 176 C92 176 78 162 78 142 C78 118 96 90 120 66 Z" fill="#110b25" fill-opacity="0.55" />
+  <text x="120" y="154" font-family="'Segoe UI', 'Inter', sans-serif" font-size="88" text-anchor="middle" fill="#fdf4ff" font-weight="600">A</text>
+</svg>

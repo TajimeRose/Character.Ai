@@ -1,0 +1,17 @@
+<svg width="240" height="240" viewBox="0 0 240 240" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="gradJudas" x1="30%" y1="0%" x2="70%" y2="100%">
+      <stop offset="0%" stop-color="#1f0c3a" />
+      <stop offset="100%" stop-color="#4c1d95" />
+    </linearGradient>
+    <radialGradient id="haloJudas" cx="55%" cy="40%" r="58%">
+      <stop offset="0%" stop-color="#7c3aed" stop-opacity="0.6" />
+      <stop offset="100%" stop-color="#0b0b0f" stop-opacity="0" />
+    </radialGradient>
+  </defs>
+  <rect width="240" height="240" rx="48" fill="#0b0b0f" />
+  <rect x="12" y="16" width="216" height="208" rx="44" fill="url(#gradJudas)" />
+  <circle cx="122" cy="102" r="84" fill="url(#haloJudas)" />
+  <path d="M120 70 C150 90 172 122 168 150 C166 168 152 182 130 184 C112 186 96 176 90 156 C82 132 90 100 120 70 Z" fill="#070611" fill-opacity="0.55" />
+  <text x="120" y="156" font-family="'Segoe UI', 'Inter', sans-serif" font-size="88" text-anchor="middle" fill="#e5e7eb" font-weight="600">J</text>
+</svg>

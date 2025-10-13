@@ -1,46 +1,25 @@
+{% extends "base.html" %}
 
-<!doctype html>
-<html lang="th">
-<head>
-  <meta charset="utf-8"/>
-  <meta name="viewport" content="width=device-width,initial-scale=1"/>
-  <title>AI Character MVP</title>
-  <style>
-    body { font-family: sans-serif; margin: 20px; }
-    #chat { border:1px solid #ddd; padding:10px; height:380px; overflow:auto; }
-    .msg.user { text-align:right; margin:6px 0; }
-    .msg.ai { text-align:left; margin:6px 0; }
-    .bubble { display:inline-block; padding:8px 10px; border-radius:10px; max-width:80%; }
-    .user .bubble { background:#e0f2fe; }
-    .ai .bubble { background:#f1f5f9; }
-  </style>
-</head>
-<body>
-  <h1>AI Character MVP</h1>
+{% block title %}AI Character Chat ? Choose Your Companion{% endblock %}
 
-  <div style="display:flex; gap:8px; align-items:center; flex-wrap: wrap;">
-    <label>Auth Token (ชั่วคราว):</label>
-    <input id="token" placeholder="ใส่ uid/โทเค่นสั้นๆ" style="width:280px;">
-    <button onclick="saveToken()">Save</button>
-
-    <label>Character:</label>
-    <select id="character">
-      <option value="neko_friend">เนโกะเพื่อนซี้</option>
-      <option value="study_helper">ติวเตอร์ใจดี</option>
-    </select>
-
-    <button onclick="loadList()">โหลดบทสนทนาของฉัน</button>
-  </div>
-
-  <div id="list" style="margin:10px 0;"></div>
-
-  <div id="chat"></div>
-
-  <div style="margin-top:10px; display:flex; gap:6px;">
-    <input id="msg" placeholder="พิมพ์ข้อความ..." style="flex:1;">
-    <button onclick="send()">ส่ง</button>
-  </div>
-
-  <script src="{{ url_for('static', filename='app.js') }}"></script>
-</body>
-</html>
+{% block content %}
+<section class="hero">
+    <h1 class="hero-title">Welcome</h1>
+    <p class="hero-subtitle">Step into the neon realm and choose a companion to narrate your next story.</p>
+    <div class="character-grid">
+        {% for character in characters %}
+            <article class="character-card">
+                <div class="character-avatar" style="background: linear-gradient(120deg, {{ character.themeColor or '#7c3aed' }}, rgba(124,58,237,0.32));">
+                    <img src="{{ url_for('static', filename=character.avatarUrl) }}" alt="{{ character.name }} portrait" />
+                </div>
+                <div class="character-body">
+                    <h2 class="character-name">{{ character.name }}</h2>
+                    {% if character.tagline %}<p class="character-tagline">{{ character.tagline }}</p>{% endif %}
+                    {% if character.description %}<p class="character-description">{{ character.description }}</p>{% endif %}
+                    <a class="primary-button card-action" href="{{ url_for('chat_page', character_key=character.key) }}">Chat with {{ character.name }}</a>
+                </div>
+            </article>
+        {% endfor %}
+    </div>
+</section>
+{% endblock %}

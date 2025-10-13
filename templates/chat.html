@@ -1,0 +1,59 @@
+﻿{% extends "base.html" %}
+
+{% block title %}Chat - {{ character.name }}{% endblock %}
+
+{% block content %}
+<section class="chat-wrapper">
+    <aside class="chat-pane chat-pane--meta">
+        <header class="chat-header">
+            <div class="character-avatar" style="background: linear-gradient(120deg, {{ character.themeColor or '#7c3aed' }}, rgba(124,58,237,0.3));">
+                <img src="{{ url_for('static', filename=character.avatarUrl) }}" alt="{{ character.name }} portrait" />
+            </div>
+            <div class="chat-header-body">
+                <h1 class="character-name">{{ character.name }}</h1>
+                {% if character.tagline %}<p class="character-tagline">{{ character.tagline }}</p>{% endif %}
+            </div>
+        </header>
+
+        <article class="character-card">
+            <h2 class="character-card-title">เกี่ยวกับ {{ character.name }}</h2>
+            {% if character.description %}
+            <p class="character-card-body">{{ character.description }}</p>
+            {% else %}
+            <p class="character-card-body">เพื่อนร่วมทางคนนี้พร้อมออกเดินทางไปกับคุณในทุกเรื่องราว</p>
+            {% endif %}
+        </article>
+    </aside>
+
+    <div class="chat-pane chat-pane--conversation">
+        <div class="chat-toolbar">
+            <button class="secondary-button" id="startNewChat" type="button">เริ่มบทสนทนาใหม่</button>
+        </div>
+
+        <div class="chat-scroll" id="chatLog">
+            <div class="history-empty" id="chatEmpty">ทักทาย {{ character.name }} เพื่อเริ่มบทสนทนาใหม่</div>
+        </div>
+
+        <div class="typing-indicator" id="typingIndicator" aria-live="polite">
+            <span>Typing</span>
+            <div class="typing-dots"><span></span><span></span><span></span></div>
+        </div>
+
+        <div class="chat-composer">
+            <textarea id="chatInput" class="chat-input" rows="1" placeholder="พิมพ์ข้อความของคุณ... (Enter เพื่อส่ง / Shift+Enter เพื่อขึ้นบรรทัดใหม่)"></textarea>
+            <button class="send-button" id="sendButton" type="button">
+                <span>Send</span>
+            </button>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block body_scripts %}
+<script>
+    window.CHAT_CONTEXT = {
+        character: {{ character | tojson }},
+        initialConversationId: {{ (initial_conversation_id or '') | tojson }}
+    };
+</script>
+{% endblock %}

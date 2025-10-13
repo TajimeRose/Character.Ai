@@ -1,0 +1,17 @@
+<svg width="240" height="240" viewBox="0 0 240 240" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="gradKris" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#3b0ca3" />
+      <stop offset="100%" stop-color="#7c3aed" />
+    </linearGradient>
+    <radialGradient id="haloKris" cx="50%" cy="40%" r="60%">
+      <stop offset="0%" stop-color="#a78bfa" stop-opacity="0.65" />
+      <stop offset="100%" stop-color="#0b0b0f" stop-opacity="0" />
+    </radialGradient>
+  </defs>
+  <rect width="240" height="240" rx="48" fill="#0b0b0f" />
+  <rect x="14" y="14" width="212" height="212" rx="42" fill="url(#gradKris)" />
+  <circle cx="120" cy="96" r="80" fill="url(#haloKris)" />
+  <path d="M120 58 L150 120 L120 182 L90 120 Z" fill="#0f1123" fill-opacity="0.55" />
+  <text x="120" y="150" font-family="'Segoe UI', 'Inter', sans-serif" font-size="96" text-anchor="middle" fill="#f4f4ff" font-weight="700">K</text>
+</svg>

@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{% block title %}AI Character Chat{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}" />
+    <script>
+        window.APP_CONFIG = {
+            useGuest: {{ 'true' if use_guest else 'false' }},
+            firebase: {{ firebase_config | tojson }},
+            firebaseEnabled: {{ 'true' if firebase_enabled else 'false' }}
+        };
+    </script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+    {% block head_scripts %}{% endblock %}
+</head>
+<body data-page="{{ page_id }}">
+    <div class="app-shell">
+        <header class="app-nav">
+            <button class="icon-button" id="menuToggle" aria-label="Open navigation">
+                <svg width="20" height="14" viewBox="0 0 20 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect y="12" width="20" height="2" rx="1" fill="#A78BFA" />
+                    <rect y="6" width="20" height="2" rx="1" fill="#A78BFA" />
+                    <rect width="20" height="2" rx="1" fill="#A78BFA" />
+                </svg>
+            </button>
+            <a class="brand-title" href="/">AI Character Chat</a>
+            <div class="nav-actions" id="navActions"></div>
+        </header>
+
+        <div class="beta-banner">{{ beta_banner_text }}</div>
+
+        <aside class="drawer" id="drawer" aria-hidden="true">
+            <div class="drawer-header">
+                <h2>Navigation</h2>
+                <button class="icon-button" id="closeDrawer" aria-label="Close navigation">
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M3.5 3.5L12.5 12.5" stroke="#A78BFA" stroke-linecap="round" />
+                        <path d="M12.5 3.5L3.5 12.5" stroke="#A78BFA" stroke-linecap="round" />
+                    </svg>
+                </button>
+            </div>
+            <nav class="drawer-nav">
+                <a class="drawer-button" data-nav="home" href="/">Home</a>
+                <a class="drawer-button" data-nav="history" href="/history">Chat History</a>
+                <button class="drawer-button" id="drawerLogout" data-action="logout" type="button">Logout</button>
+            </nav>
+        </aside>
+        <div class="drawer-overlay" id="drawerOverlay"></div>
+
+        <main class="app-main">
+            {% block content %}{% endblock %}
+        </main>
+
+        <footer class="app-footer">
+            <span>Crafted with neon dreams - {{ beta_banner_text }}</span>
+        </footer>
+    </div>
+
+    <!-- ฟอร์มล็อคอิน -->
+    <div class="modal-backdrop" id="authModal" aria-hidden="true">
+        <div class="modal" role="dialog" aria-modal="true" aria-labelledby="authModalTitle">
+            <h3 id="authModalTitle">Welcome Explorer</h3>
+            <p class="helper-text" id="authModalHelper">Sign in to sync your neon adventures across devices.</p>
+            <form id="authForm">
+                <div class="input-group">
+                    <label for="inputDisplayName">Display name</label>
+                    <input id="inputDisplayName" type="text" placeholder="e.g. Nova" autocomplete="name" />
+                </div>
+                <div class="input-group">
+                    <label for="inputEmail">Email</label>
+                    <input id="inputEmail" type="email" placeholder="you@example.com" autocomplete="email" required />
+                </div>
+                <div class="input-group">
+                    <label for="inputPassword">Password</label>
+                    <input id="inputPassword" type="password" placeholder="Minimum 6 characters" autocomplete="current-password" required />
+                </div>
+            </form>
+            <div class="helper-text" id="authModalNote"></div>
+            <div class="modal-actions">
+                <button class="secondary-button" id="cancelAuth" type="button">Cancel</button>
+                <button class="primary-button" id="saveAuth" type="button">Continue</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="toast" id="toast" role="status"></div>
+
+    <script type="module" src="{{ url_for('static', filename='app.js') }}"></script>
+    {% block body_scripts %}{% endblock %}
+</body>
+</html>

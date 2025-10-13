@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block title %}Chat History{% endblock %}
+
+{% block content %}
+<section class="history-wrapper">
+    <header class="history-header">
+        <h1 class="hero-title">Chat History</h1>
+        <p class="hero-subtitle">Revisit, continue, or tidy up past conversations.</p>
+    </header>
+    <div class="history-controls">
+        <button class="secondary-button" id="refreshHistory" type="button">Refresh</button>
+    </div>
+    <div class="history-list" id="historyList">
+        <div class="history-empty">Loading your conversations...</div>
+    </div>
+</section>
+{% endblock %}
+
+{% block body_scripts %}
+<script>
+    window.HISTORY_CONTEXT = {
+        characters: {{ characters | tojson }}
+    };
+</script>
+{% endblock %}
