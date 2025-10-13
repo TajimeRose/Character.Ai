@@ -1,0 +1,40 @@
+# --- Secrets ---
+.env
+.env.*.local
+*.pem
+*.p12
+*_private_key*
+serviceAccountKey.json
+
+# --- Python ---
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.egg-info/
+.pytest_cache/
+.coverage*
+htmlcov/
+
+# --- Databases / dumps ---
+*.sqlite*
+*.db
+dump.sql
+backups/
+
+# --- Logs ---
+*.log
+*.pid
+
+# --- Editors / OS ---
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# --- JS/Build (ถ้ามี) ---
+node_modules/
+dist/
+build/
